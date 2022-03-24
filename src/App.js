@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Blog from "./pages/Blog";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Login from "./pages/Login";
@@ -22,7 +23,7 @@ function App() {
     <Router>
       <nav>
         <Link to="/"> Home </Link>
-
+        <Link to="/blog"> Blog </Link>
         {!isAuth ? (
           <Link to="/login"> Login </Link>
         ) : (
@@ -33,7 +34,8 @@ function App() {
         )}
       </nav>
       <Routes>
-        <Route path="/" element={<Home isAuth={isAuth} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog isAuth={isAuth} />} />
         <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
       </Routes>
