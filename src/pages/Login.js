@@ -8,7 +8,9 @@ function Login({ setIsAuth }) {
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
+      console.log(result);
       localStorage.setItem("isAuth", true);
+      localStorage.setItem("User", result.user.displayName);
       setIsAuth(true);
       navigate("/");
     });
@@ -20,7 +22,6 @@ function Login({ setIsAuth }) {
       <button className="login-with-google-btn" onClick={signInWithGoogle}>
         Sign in with Google
       </button>
-    
     </div>
   );
 }

@@ -6,24 +6,42 @@ body {
   margin: 0%;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.headerWrapper {
+  display: flex;
+  border-bottom: 1px solid brown;
+}
+.socialIcons {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 35px;
+  width: 20%;
+}
+.socialIcons > span {
+  padding-left: 25px;
+  font-size: 20px;
+}
+.logoWrapper {
+  display: flex;
+  width: 60%;
+  justify-content: center;
+}
 nav {
   margin: 0;
   width: 100%;
   height: 80px;
-  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(116, 5, 5);
   text-decoration: none;
+  font-family: "Nanum Brush Script", cursive;
+  font-size: 35px;
 }
 
 a {
-  color: white;
+  color: rgb(116, 5, 5);
   text-decoration: none;
   margin: 10px;
-  font-size: 25px;
 }
 
 .createPostPage {
