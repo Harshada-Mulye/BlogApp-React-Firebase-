@@ -30,12 +30,42 @@ nav {
   width: 100%;
   height: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  
   color: rgb(116, 5, 5);
   text-decoration: none;
   font-family: "Nanum Brush Script", cursive;
   font-size: 35px;
+}
+
+
+.link{
+ 
+  display:flex;
+  justify-content: center;
+  margin-left: 10px;
+
+  
+}
+
+.welcome{
+  
+  display:flex;
+  align-items: center;
+  margin-right: 60px;
+}
+
+.logout{
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+.logout button{
+  background-color: #0f073d;
+            color: #ffffff;
+            border-radius: 40px;
+            padding:10px;
 }
 
 a {

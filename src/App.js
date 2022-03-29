@@ -23,6 +23,7 @@ function App() {
     });
   };
   console.log(isAuth);
+  
   return (
     <Router>
       <div className="headerWrapper">
@@ -48,17 +49,26 @@ function App() {
         </div>
       </div>
       <nav>
+        <div style={{width:"500px"}}></div>
+        <div className="link">
         <Link to="/"> Home </Link>
         <Link to="/blog"> Blog </Link>
         {!isAuth ? (
           <Link to="/login"> Login </Link>
         ) : (
           <>
-            <Link to="/createpost"> Create Post </Link>
-            <button onClick={signUserOut}> Log Out</button>
+          <Link to="/createpost"> Create Post </Link>
+         
+            <div className="logout"><button onClick={signUserOut}> Log Out</button></div>
+            
           </>
         )}
-        <h1>Welcome back {user}</h1>
+         <div style={{width:"100px"}}></div>
+          <div className="welcome">
+      Welcome back: {user}</div>
+            
+        </div>
+        
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
