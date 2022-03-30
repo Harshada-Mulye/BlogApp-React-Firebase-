@@ -59,17 +59,20 @@ function App() {
           <>
           <Link to="/createpost"> Create Post </Link>
          
-            <div className="logout"><button onClick={signUserOut}> Log Out</button></div>
+            <div className="logout">
+              <button onClick={signUserOut}> Log Out</button>
+              </div>
             
           </>
         )}
+        </div>
          <div style={{width:"100px"}}></div>
           <div className="welcome">
       Welcome back: {user}</div>
             
-        </div>
-        
-      </nav>
+       
+        </nav>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog isAuth={isAuth} />} />

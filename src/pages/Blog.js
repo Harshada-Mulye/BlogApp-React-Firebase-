@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 import {AiFillEdit } from 'react-icons/ai'
+import { RiDeleteBin5Line} from 'react-icons/ri'
 import Modal from './Modal'
 
 function Blog({ isAuth }) {
@@ -50,14 +51,11 @@ function Blog({ isAuth }) {
               <div className="deletePost">
                 {isAuth && post.author.id === auth.currentUser.uid && (
                   <div>
-                  <button
-                    onClick={() => {
+                  
+                <RiDeleteBin5Line style={{fontSize:"20px",color:"#660000"}} onClick={() => {
                       deletePost(post.id);
-                    }}
-                  >
-                    {" "}
-                    &#128465;
-                  </button>
+                    }}/>
+                  
                  {/*  <AiFillEdit onClick={() => openModal(post.id, post.postText)}/> */}
                   </div>
                 )}
