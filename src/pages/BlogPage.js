@@ -21,13 +21,17 @@ function BlogPage({ postLists }) {
   }, []); */
   return (
     <div>
-      <h1>{id}</h1>
       {
         (data1 = postLists
           .filter((item) => item.id == id)
 
           .map((post) => {
-            return <h1>{post.title}</h1>;
+            return (
+              <div>
+                <h1>{post.title}</h1>
+                <h1>{post.postText}</h1>
+              </div>
+            );
           }))
       }
     </div>
