@@ -82,7 +82,10 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/blog" element={<Blog isAuth={isAuth} />} />
+        <Route
+          path="/blog"
+          element={<Blog isAuth={isAuth} postLists={postLists} />}
+        />
         <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
         <Route path="/blog/:id" element={<BlogPage postLists={postLists} />} />
