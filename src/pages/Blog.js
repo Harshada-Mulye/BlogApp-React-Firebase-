@@ -6,8 +6,8 @@ import { AiFillEdit } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Modal from "./Modal";
 
-function Blog({ isAuth, postLists }) {
-  //   const [postLists, setPostList] = useState([]);
+function Blog({ isAuth }) {
+  const [postLists, setPostList] = useState([]);
   const postsCollectionRef = collection(db, "posts");
   const [isOpen, setIsOpen] = useState(false);
   const [postToUpdate, setPostToUpdate] = useState();
@@ -18,18 +18,18 @@ function Blog({ isAuth, postLists }) {
     setidToUpdate(id);
     setPostToUpdate(name);
   }
-  /*   const deletePost = async (id) => {
+  const deletePost = async (id) => {
     const postDoc = doc(db, "posts", id);
     await deleteDoc(postDoc);
-  }; */
-  /*   useEffect(() => {
+  };
+  useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
     getPosts();
-  }, [deletePost]); */
+  }, [deletePost]);
 
   const closeModal = () => setIsOpen(false);
 
@@ -50,9 +50,9 @@ function Blog({ isAuth, postLists }) {
                   <div>
                     <RiDeleteBin5Line
                       style={{ fontSize: "20px", color: "#660000" }}
-                      /*   onClick={() => {
+                      onClick={() => {
                         deletePost(post.id);
-                      }} */
+                      }}
                     />
 
                     {/*  <AiFillEdit onClick={() => openModal(post.id, post.postText)}/> */}

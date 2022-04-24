@@ -26,7 +26,7 @@ function App() {
       window.location.pathname = "/login";
     });
   };
-  useEffect(() => {
+  /*   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -34,7 +34,7 @@ function App() {
     };
 
     getPosts();
-  }, []);
+  }, []); */
   return (
     <Router>
       <div className="headerWrapper">
@@ -82,13 +82,10 @@ function App() {
       </nav>
 
       <Routes>
-        <Route
-          path="/blog"
-          element={<Blog isAuth={isAuth} postLists={postLists} />}
-        />
+        <Route path="/blog" element={<Blog isAuth={isAuth} />} />
         <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-        <Route path="/blog/:id" element={<BlogPage postLists={postLists} />} />
+        <Route path="/blog/:id" element={<BlogPage />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>
