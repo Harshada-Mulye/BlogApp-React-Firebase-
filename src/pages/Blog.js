@@ -12,7 +12,7 @@ function Blog({ isAuth }) {
   const [isOpen, setIsOpen] = useState(false);
   const [postToUpdate, setPostToUpdate] = useState();
   const [idToUpdate, setidToUpdate] = useState();
-
+  let part;
   function openModal(id, name) {
     setIsOpen(true);
     setidToUpdate(id);
@@ -59,9 +59,17 @@ function Blog({ isAuth }) {
                   </div>
                 )}
               </div>
+              <img
+                src={post.imageUrl}
+                alt="title"
+                style={{ height: 180, width: 180 }}
+              />
             </div>
             <h3>@{post.author.name}</h3>
-            <div className="postTextContainer"> {post.postText} </div>
+            <div className="postTextContainer">
+              {(part = post.postText.slice(1, 50))}
+              {part}
+            </div>
 
             <Link to={`/blog/${post.id}`}>View</Link>
           </div>
