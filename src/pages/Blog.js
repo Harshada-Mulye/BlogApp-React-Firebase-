@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase-config";
 import { AiFillEdit } from "react-icons/ai";
@@ -22,14 +30,26 @@ function Blog({ isAuth }) {
     const postDoc = doc(db, "posts", id);
     await deleteDoc(postDoc);
   };
-  useEffect(() => {
+  /*   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
     getPosts();
-  }, [deletePost]);
+  }, [deletePost]); */
+  useEffect(() => {
+    const articleRef = collection(db, "posts");
+    const q = query(articleRef, orderBy("createdAt", "desc"));
+    onSnapshot(q, (snapshot) => {
+      const articles = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setPostList(articles);
+      console.log(articles);
+    });
+  }, []);
 
   const closeModal = () => setIsOpen(false);
 
@@ -65,6 +85,8 @@ function Blog({ isAuth }) {
                 style={{ height: 180, width: 180 }}
               />
             </div>
+
+            <h4>Created At{post.createdAt.toDate().toDateString()}</h4>
             <h3>@{post.author.name}</h3>
             <div className="postTextContainer">
               {(part = post.postText.slice(1, 50))}

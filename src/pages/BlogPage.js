@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
 function BlogPage() {
@@ -9,7 +17,7 @@ function BlogPage() {
   let data1;
   const { id } = useParams();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -17,6 +25,18 @@ function BlogPage() {
     };
 
     getPosts();
+  }, []); */
+  useEffect(() => {
+    const articleRef = collection(db, "posts");
+    const q = query(articleRef, orderBy("createdAt", "desc"));
+    onSnapshot(q, (snapshot) => {
+      const articles = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setPostList(articles);
+      console.log(articles);
+    });
   }, []);
   return (
     <div>
