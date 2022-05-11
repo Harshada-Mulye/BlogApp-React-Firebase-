@@ -1,138 +1,11 @@
-/*import React, { useState, useEffect } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db, auth, storage } from "../firebase-config";
-import { useNavigate } from "react-router-dom";
-import makeid from "./../helper/function";
-import { RiDeleteBin5Line } from "react-icons/ri";
 
-function CreatePost({ isAuth }) {
-  const [title, setTitle] = useState("");
-  const [postText, setPostText] = useState("");
-  const [image, setImage] = useState("");
-  const [progress, setProgress] = useState(0);
-  const postsCollectionRef = collection(db, "posts");
-  let navigate = useNavigate();
-
-  const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-      var selectedImageSrc = URL.createObjectURL(e.target.files[0]);
-      var imagePreview = document.getElementById("image-preview");
-      imagePreview.src = selectedImageSrc;
-      imagePreview.style.display = "block";
-    }
-  };
-
-  const createPost = async () => {
-    await addDoc(postsCollectionRef, {
-      title,
-      postText,
-      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
-    });
-    navigate("/blog");
-  };
-
-  /*  const handleUpload = () => {
-    if (image || !image) {
-      var imageName = makeid(10);
-      const uploadTask = storage.ref(`images/${imageName}.jpg`).put(image);
-      uploadTask.on(
-        "state_Changed",
-        (snapshot) => {
-          //progress function
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setProgress(progress);
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          //get the download URL and upload the post
-          storage
-            .ref("images")
-            .child(`${imageName}.jpg`)
-            .getDownloadURL()
-            .then((imageUrl) => {
-              db.collection("posts").add({
-                // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-
-                title,
-                postText,
-                // photoUrl: imageUrl,
-                author: {
-                  name: auth.currentUser.displayName,
-                  id: auth.currentUser.uid,
-                },
-              });
-            });
-
-          setProgress(0);
-          setImage(null);
-          document.getElementById("image-preview").style.display = "none";
-        }
-      );
-    }
-  }; */
-
-/* useEffect(() => {
-    if (!isAuth) {
-      navigate("/login");
-    }
-  }, []);
-
-  return (
-    <div className="createPostPage">
-      <div className="cpContainer">
-        <h1>Create A Post</h1>
-        <div className="inputGp">
-          <label> Title:</label>
-          <input
-            placeholder="Title..."
-            onChange={(event) => {
-              setTitle(event.target.value);
-            }}
-          />
-        </div>
-        <div className="inputGp">
-          <label> Post:</label>
-          <textarea
-            placeholder="Post..."
-            onChange={(event) => {
-              setPostText(event.target.value);
-            }}
-          />
-        </div>
-        <div className="postimageupload">
-          <label htmlFor="fileInput">
-            <RiDeleteBin5Line style={{ cursor: "pointer", fontSize: "20px" }} />{" "}
-          </label>
-          <input
-            id="fileInput"
-            type="file"
-            accept="image/*"
-            onChange={handleChange}
-          />
-        </div>
-        <button onClick={createPost}> Submit Post</button>
-        {/*   <button className="uploadbtn" onClick={handleUpload}>
-          {`upload ${progress != 0 ? progress : ""}`}
-        </button> */
-/*  </div>
-    </div>
-  );
-}
-
-export default CreatePost;
-*/
 
 import React, { useState, useEffect } from "react";
 import { Timestamp, collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
-//import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { Link } from "react-router-dom";
 
@@ -203,11 +76,11 @@ function CreatePost({ isAuth }) {
             createdAt: Timestamp.now().toDate(),
           })
             .then(() => {
-              //   toast("Article added successfully", { type: "success" });
+               toast("Article added successfully", { type: "success" });
               setProgress(0);
             })
             .catch((err) => {
-              //   toast("Error adding article", { type: "error" });
+                toast("Error adding article", { type: "error" });
             });
         });
       }
@@ -215,10 +88,10 @@ function CreatePost({ isAuth }) {
   };
 
   return (
-    <div className="border p-3 mt-3 bg-light" style={{ position: "fixed" }}>
-      <h2>Create article</h2>
+    <div className="border p-3 mt-3 flex-column " style={{ margin:"auto" ,width:"50%",backgroundColor:"red"}}>
+      <h2 className="text-center">Create Post</h2>
       <div className="form-group">
-        <label htmlFor="">Title</label>
+        <label className="h5 "htmlFor="">Title</label>
         <input
           type="text"
           name="title"
@@ -229,21 +102,22 @@ function CreatePost({ isAuth }) {
       </div>
 
       {/* description */}
-      <label htmlFor="">Description</label>
+      <label className="h5 mt-3"htmlFor="">Description</label>
       <textarea
         name="description"
+        rows="5"
         className="form-control"
         value={formData.description}
         onChange={(e) => handleChange(e)}
       />
 
       {/* image */}
-      <label htmlFor="">Image</label>
+      <label className="h5 mt-3"htmlFor="">Image</label>
       <input
-        type="file"
+       type="file"
         name="image"
-        accept="image/*"
-        className="form-control"
+        accept="image/*" 
+        className="form-control "
         onChange={(e) => handleImageChange(e)}
       />
 
@@ -257,7 +131,7 @@ function CreatePost({ isAuth }) {
           </div>
         </div>
       )}
-      <button className="form-control btn-primary mt-2" onClick={handlePublish}>
+      <button className="form-control btn-primary mt-4" onClick={handlePublish}>
         Publish
       </button>
     </div>
