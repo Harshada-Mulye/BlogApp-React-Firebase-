@@ -204,31 +204,43 @@ textarea {
   justify-content: center;
   padding-top: 20px;
   flex-wrap: wrap;
+  
 }
 
 .homePage .post {
-  flex-basis: 33.333%;
+  /* flex-basis: 33.333%; */
+  display:flex;
+  flex-direction: row;
+  height:300px;
+  width:600px;
   background-color: rgb(250, 250, 250);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin: 20px;
-  padding: 20px;
+  
   border-radius: 15px;
 }
 
 .post .postHeader {
   display: flex;
-  justify-content: center;
-  width: 100%;
+  flex-direction: row;
+  
+  justify-content: space-between;
+  
+  background-color: green;
 }
 
 .postHeader .title {
   flex: 50%;
+  background-color: red;
+  padding: 0;
 }
 .postHeader .deletePost {
   flex: 50%;
-  display: flex;
-  flex-direction: column;
   align-items: flex-end;
+  background-color: yellow;
+  
+  flex-direction: column;
+ 
 }
 
 .deletePost button {
@@ -246,4 +258,10 @@ textarea {
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
+}
+a:link{
+  text-decoration: none;
+}
+.title a:visited{
+  color: pink;
 }

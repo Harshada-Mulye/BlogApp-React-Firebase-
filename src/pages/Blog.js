@@ -61,13 +61,22 @@ function Blog({ isAuth }) {
       {postLists.map((post) => {
         return (
           <div className="post">
+            <div className="image">
+             <img
+                src={post.imageUrl}
+                alt="title"
+                style={{ height: 300, width: 180,marginRight:10 }}
+              />
+              </div>
+              <div style={{ marginLeft:10 }}> 
             <div className="postHeader">
               <div className="title">
-                <h1 key={post.id}> {post.title}</h1>
+              <Link to={`/blog/${post.id}`}>
+                <h1 key={post.id}> {post.title}</h1></Link>
               </div>
               <div className="deletePost">
                 {isAuth && post.author.id === auth.currentUser.uid && (
-                  <div>
+                  <>
                     <RiDeleteBin5Line
                       style={{ fontSize: "20px", color: "#660000" }}
                       onClick={() => {
@@ -76,24 +85,22 @@ function Blog({ isAuth }) {
                     />
 
                     {/*  <AiFillEdit onClick={() => openModal(post.id, post.postText)}/> */}
-                  </div>
+                  </>
                 )}
               </div>
-              <img
-                src={post.imageUrl}
-                alt="title"
-                style={{ height: 180, width: 180 }}
-              />
+             
             </div>
-
-            <h4>Created At{post.createdAt.toDate().toDateString()}</h4>
-            <h3>@{post.author.name}</h3>
             <div className="postTextContainer">
               {(part = post.postText.slice(1, 50))}
-              {part}
+              {part}...
+            </div>
+            <div>
+            <h4>Created At{post.createdAt.toDate().toDateString()}</h4>
+            <h3>@{post.author.name}</h3>
             </div>
 
-            <Link to={`/blog/${post.id}`}>View</Link>
+           
+          </div>
           </div>
         );
       })}
