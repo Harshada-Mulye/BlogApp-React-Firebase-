@@ -46,9 +46,16 @@ function BlogPage() {
 
           .map((post) => {
             return (
-              <div>
-                <h1>{post.title}</h1>
-                <h1>{post.postText}</h1>
+              <div className="blogPage">
+                 <div className="authorName"><span>{post.author.name}</span></div>
+            <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
+                <span>{post.title}</span>
+                <img
+                src={post.imageUrl}
+                alt="title"
+                style={{ height: 400, width: 400,marginRight:10 }}
+              />
+                <span>{post.postText}</span>
               </div>
             );
           }))

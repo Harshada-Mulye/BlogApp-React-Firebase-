@@ -65,14 +65,14 @@ function Blog({ isAuth }) {
              <img
                 src={post.imageUrl}
                 alt="title"
-                style={{ height: 300, width: 180,marginRight:10 }}
+                style={{ height: 250, width: 220,marginRight:10 }}
               />
               </div>
               <div style={{ marginLeft:10 }}> 
-            <div className="postHeader">
+            <div className="postHeader ">
               <div className="title">
               <Link to={`/blog/${post.id}`}>
-                <h1 key={post.id}> {post.title}</h1></Link>
+                <span key={post.id}> {post.title}</span></Link>
               </div>
               <div className="deletePost">
                 {isAuth && post.author.id === auth.currentUser.uid && (
@@ -94,9 +94,13 @@ function Blog({ isAuth }) {
               {(part = post.postText.slice(1, 50))}
               {part}...
             </div>
-            <div>
-            <h4>Created At{post.createdAt.toDate().toDateString()}</h4>
-            <h3>@{post.author.name}</h3>
+            <div className="cardBottomContainer">
+            <div className="authorPic"></div>
+            <div className="authorNameAndDate">
+            <div className="authorName"><span>{post.author.name}</span></div>
+            <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
+           
+            </div>
             </div>
 
            
