@@ -46,16 +46,27 @@ function BlogPage() {
 
           .map((post) => {
             return (
-              <div className="blogPage">
+              <div className="blogPageWrapper">
+                <div className="blogPage">
+                <div className="autorPicAndName">
+                 <div className="authorPic"></div>
                  <div className="authorName"><span>{post.author.name}</span></div>
-            <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
-                <span>{post.title}</span>
+                 </div>
+                 <div className="postTitleandName">
+                <div className="postTitle"><span>{post.title}</span></div>
+                <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
+                </div>
+                <div className="postImage">
                 <img
                 src={post.imageUrl}
                 alt="title"
                 style={{ height: 400, width: 400,marginRight:10 }}
               />
+              </div>
+              <div className="postText">
                 <span>{post.postText}</span>
+                </div>
+              </div>
               </div>
             );
           }))

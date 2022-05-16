@@ -275,30 +275,61 @@ a:link{
   display:flex;
   font-family: "Nanum Brush Script", cursive;
   font-size: 18px;
-  background-color: #cec9e7;
   margin-top: 20px;
   padding:10px;
   flex-direction: row;
   align-items: center;
 }
 .authorPic{
-  
+  background-color: #e25e2c;
   font-size:16px;
   width:60px;
   height:60px;
   border-radius: 500px;
-  background-color:yellow;
+ 
 }
 .authorNameAndDate{
   flex:1;
   margin: 10px;
 }
 /* b;ogpage styles*/
-.blogPage{
+.blogPageWrapper{
   display:flex;
-  flex-direction: column;
+  padding: 30px;
   justify-content: center;
-  align-items: center;
   overflow: scroll;
 
+
+}
+.blogPage{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.autorPicAndName{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.autorPicAndName .authorName{
+  flex:1;
+  margin: 20px;
+}
+
+.postTitle{
+  margin-top: 20px;
+  display:flex;
+  font-family: "Nanum Brush Script", cursive;
+  font-size: 36px;
+}
+.postImage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.postText{
+  display:flex;
+  margin-top: 30px;
 }
