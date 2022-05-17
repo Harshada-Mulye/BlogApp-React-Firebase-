@@ -20,6 +20,7 @@ function Blog({ isAuth }) {
   const [isOpen, setIsOpen] = useState(false);
   const [postToUpdate, setPostToUpdate] = useState();
   const [idToUpdate, setidToUpdate] = useState();
+
   let part;
   function openModal(id, name) {
     setIsOpen(true);
@@ -47,7 +48,6 @@ function Blog({ isAuth }) {
         ...doc.data(),
       }));
       setPostList(articles);
-      console.log(articles);
     });
   }, []);
 
@@ -62,49 +62,52 @@ function Blog({ isAuth }) {
         return (
           <div className="post">
             <div className="image">
-             <img
+              <img
                 src={post.imageUrl}
                 alt="title"
-                style={{ height: 250, width: 220,marginRight:10 }}
+                style={{ height: 250, width: 220, marginRight: 10 }}
               />
-              </div>
-              <div style={{ marginLeft:10 }}> 
-            <div className="postHeader ">
-              <div className="title">
-              <Link to={`/blog/${post.id}`}>
-                <span key={post.id}> {post.title}</span></Link>
-              </div>
-              <div className="deletePost">
-                {isAuth && post.author.id === auth.currentUser.uid && (
-                  <>
-                    <RiDeleteBin5Line
-                      style={{ fontSize: "20px", color: "#660000" }}
-                      onClick={() => {
-                        deletePost(post.id);
-                      }}
-                    />
+            </div>
+            <div style={{ marginLeft: 10 }}>
+              <div className="postHeader ">
+                <div className="title">
+                  <Link to={`/blog/${post.id}`}>
+                    <span key={post.id}> {post.title}</span>
+                  </Link>
+                </div>
+                <div className="deletePost">
+                  {isAuth && post.author.id === auth.currentUser.uid && (
+                    <>
+                      <RiDeleteBin5Line
+                        style={{ fontSize: "20px", color: "#660000" }}
+                        onClick={() => {
+                          deletePost(post.id);
+                        }}
+                      />
 
-                    {/*  <AiFillEdit onClick={() => openModal(post.id, post.postText)}/> */}
-                  </>
-                )}
+                      {/*  <AiFillEdit onClick={() => openModal(post.id, post.postText)}/> */}
+                    </>
+                  )}
+                </div>
               </div>
-             
+              <div className="postTextContainer">
+                {(part = post.postText.slice(1, 50))}
+                {part}...
+              </div>
+              <div className="cardBottomContainer">
+                <div>
+                  <img src={post.userPhoto} className="authorPic"></img>
+                </div>
+                <div className="authorNameAndDate">
+                  <div className="authorName">
+                    <span>{post.author.name}</span>
+                  </div>
+                  <div className="createdDate">
+                    <span>{post.createdAt.toDate().toDateString()}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="postTextContainer">
-              {(part = post.postText.slice(1, 50))}
-              {part}...
-            </div>
-            <div className="cardBottomContainer">
-            <div className="authorPic"></div>
-            <div className="authorNameAndDate">
-            <div className="authorName"><span>{post.author.name}</span></div>
-            <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
-           
-            </div>
-            </div>
-
-           
-          </div>
           </div>
         );
       })}

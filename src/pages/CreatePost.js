@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { Timestamp, collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -16,6 +14,7 @@ function CreatePost({ isAuth }) {
     image: "",
     createdAt: Timestamp.now().toDate(),
   });
+  const [userPhoto, setUserPhoto] = useState(localStorage.getItem("UserPhoto"));
   let navigate = useNavigate();
   useEffect(() => {
     if (!isAuth) {
@@ -74,13 +73,14 @@ function CreatePost({ isAuth }) {
               id: auth.currentUser.uid,
             },
             createdAt: Timestamp.now().toDate(),
+            userPhoto: userPhoto,
           })
             .then(() => {
-               toast("Article added successfully", { type: "success" });
+              toast("Article added successfully", { type: "success" });
               setProgress(0);
             })
             .catch((err) => {
-                toast("Error adding article", { type: "error" });
+              toast("Error adding article", { type: "error" });
             });
         });
       }
@@ -88,10 +88,15 @@ function CreatePost({ isAuth }) {
   };
 
   return (
-    <div className="border p-3 mt-3 flex-column " style={{ margin:"auto" ,width:"50%",backgroundColor:"lightgray"}}>
+    <div
+      className="border p-3 mt-3 flex-column "
+      style={{ margin: "auto", width: "50%", backgroundColor: "lightgray" }}
+    >
       <h2 className="text-center">Create Post</h2>
       <div className="form-group">
-        <label className="h5 "htmlFor="">Title</label>
+        <label className="h5 " htmlFor="">
+          Title
+        </label>
         <input
           type="text"
           name="title"
@@ -102,7 +107,9 @@ function CreatePost({ isAuth }) {
       </div>
 
       {/* description */}
-      <label className="h5 mt-3"htmlFor="">Description</label>
+      <label className="h5 mt-3" htmlFor="">
+        Description
+      </label>
       <textarea
         name="description"
         rows="5"
@@ -112,11 +119,13 @@ function CreatePost({ isAuth }) {
       />
 
       {/* image */}
-      <label className="h5 mt-3"htmlFor="">Image</label>
+      <label className="h5 mt-3" htmlFor="">
+        Image
+      </label>
       <input
-       type="file"
+        type="file"
         name="image"
-        accept="image/*" 
+        accept="image/*"
         className="form-control "
         onChange={(e) => handleImageChange(e)}
       />
