@@ -88,7 +88,7 @@ function CreatePost({ isAuth }) {
   };
 
   return (
-    <div className="border p-3 mt-3 flex-column " style={{ margin:"auto" ,width:"50%",backgroundColor:"red"}}>
+    <div className="border p-3 mt-3 flex-column " style={{ margin:"auto" ,width:"50%",backgroundColor:"lightgray"}}>
       <h2 className="text-center">Create Post</h2>
       <div className="form-group">
         <label className="h5 "htmlFor="">Title</label>
