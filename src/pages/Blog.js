@@ -10,8 +10,8 @@ import {
 } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase-config";
- import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom"; 
+ /* import { useAuthState } from "react-firebase-hooks/auth";
+import { useParams } from "react-router-dom";  */
 
 import { RiDeleteBin5Line } from "react-icons/ri";
 
@@ -19,9 +19,9 @@ import LikeArticle from "./LikeArticle";
 
 function Blog({ isAuth }) {
   const [postLists, setPostList] = useState([]);
-  const { id } = useParams();
+ /*  const { id } = useParams();
   const [user] = useAuthState(auth);
-  console.log("user name",user)
+  console.log("user name",user) */
   // const postsCollectionRef = collection(db, "posts");
   /*const [isOpen, setIsOpen] = useState(false);
   const [postToUpdate, setPostToUpdate] = useState();
@@ -103,12 +103,12 @@ function Blog({ isAuth }) {
             <div className="authorNameAndDate">
             <div className="authorName"><span>{post.author.name}</span></div>
             <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
-            <div className="articleLikes">
+           {/*  <div className="articleLikes">
               {user && <LikeArticle id={id} likes={post.likes} />}
               <div className="pe-2">
                 <p>{post.likes.length}</p>
               </div> 
-            </div>
+            </div> */}
             </div>
             </div>
 
