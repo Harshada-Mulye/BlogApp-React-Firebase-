@@ -10,22 +10,28 @@ import {
 } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase-config";
-import { AiFillEdit } from "react-icons/ai";
+ import { useAuthState } from "react-firebase-hooks/auth";
+import { useParams } from "react-router-dom"; 
+
 import { RiDeleteBin5Line } from "react-icons/ri";
-import Modal from "./Modal";
+
+import LikeArticle from "./LikeArticle";
 
 function Blog({ isAuth }) {
   const [postLists, setPostList] = useState([]);
-  const postsCollectionRef = collection(db, "posts");
-  const [isOpen, setIsOpen] = useState(false);
+  const { id } = useParams();
+  const [user] = useAuthState(auth);
+  console.log("user name",user)
+  // const postsCollectionRef = collection(db, "posts");
+  /*const [isOpen, setIsOpen] = useState(false);
   const [postToUpdate, setPostToUpdate] = useState();
-  const [idToUpdate, setidToUpdate] = useState();
+  const [idToUpdate, setidToUpdate] = useState(); */
   let part;
-  function openModal(id, name) {
+  /* function openModal(id, name) {
     setIsOpen(true);
     setidToUpdate(id);
     setPostToUpdate(name);
-  }
+  } */
   const deletePost = async (id) => {
     const postDoc = doc(db, "posts", id);
     await deleteDoc(postDoc);
@@ -51,13 +57,11 @@ function Blog({ isAuth }) {
     });
   }, []);
 
-  const closeModal = () => setIsOpen(false);
+  // const closeModal = () => setIsOpen(false);
 
   return (
     <div className="homePage">
-      {/* {isOpen && (
-        <Modal id={idToUpdate} name={postToUpdate} closeAction={closeModal} />
-      )} */}
+    
       {postLists.map((post) => {
         return (
           <div className="post">
@@ -65,7 +69,7 @@ function Blog({ isAuth }) {
              <img
                 src={post.imageUrl}
                 alt="title"
-                style={{ height: 250, width: 220,marginRight:10 }}
+                style={{ height: 250, width: 200,marginRight:10 }}
               />
               </div>
               <div style={{ marginLeft:10 }}> 
@@ -91,7 +95,7 @@ function Blog({ isAuth }) {
              
             </div>
             <div className="postTextContainer">
-              {(part = post.postText.slice(1, 50))}
+             <span> {(part = post.postText.slice(0,50))}</span>
               {part}...
             </div>
             <div className="cardBottomContainer">
@@ -99,7 +103,12 @@ function Blog({ isAuth }) {
             <div className="authorNameAndDate">
             <div className="authorName"><span>{post.author.name}</span></div>
             <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
-           
+            <div className="articleLikes">
+              {user && <LikeArticle id={id} likes={post.likes} />}
+              <div className="pe-2">
+                <p>{post.likes.length}</p>
+              </div> 
+            </div>
             </div>
             </div>
 

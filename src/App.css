@@ -256,10 +256,11 @@ textarea {
 
 .post .postTextContainer {
  
-  margin-top: 20px;
-  word-wrap: break-word;
+  margin: 20px 0px 0px 0px;
+ 
+  word-wrap: break-word; 
   height: auto;
-  max-height: 400px;
+   max-height: 400px; 
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
@@ -274,7 +275,7 @@ a:link{
   display:flex;
   font-family: "Nanum Brush Script", cursive;
   font-size: 18px;
-  margin-top: 20px;
+  margin-top: 5px;
   padding:10px;
   flex-direction: row;
   align-items: center;
