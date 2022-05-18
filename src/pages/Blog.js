@@ -10,8 +10,8 @@ import {
 } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase-config";
- /* import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";  */
+  import { useAuthState } from "react-firebase-hooks/auth";
+import { useParams } from "react-router-dom";  
 
 import { RiDeleteBin5Line } from "react-icons/ri";
 
@@ -19,9 +19,9 @@ import LikeArticle from "./LikeArticle";
 
 function Blog({ isAuth }) {
   const [postLists, setPostList] = useState([]);
- /*  const { id } = useParams();
+  //  const { id } = useParams();
   const [user] = useAuthState(auth);
-  console.log("user name",user) */
+  console.log("user name",user) 
   // const postsCollectionRef = collection(db, "posts");
   /*const [isOpen, setIsOpen] = useState(false);
   const [postToUpdate, setPostToUpdate] = useState();
@@ -62,9 +62,9 @@ function Blog({ isAuth }) {
   return (
     <div className="homePage">
     
-      {postLists.map((post) => {
+      {postLists.map((post,likes) => {
         return (
-          <div className="post">
+          <div className="post" key={post.id}>
             <div className="image">
              <img
                 src={post.imageUrl}
@@ -95,21 +95,22 @@ function Blog({ isAuth }) {
              
             </div>
             <div className="postTextContainer">
-             <span> {(part = post.postText.slice(0,50))}</span>
-              {part}...
+             <span> {(part = post.postText.slice(0,120))}...</span>
+              {/* {part}... */}
             </div>
             <div className="cardBottomContainer">
             <div className="authorPic"></div>
             <div className="authorNameAndDate">
             <div className="authorName"><span>{post.author.name}</span></div>
             <div className="createdDate"><span>{post.createdAt.toDate().toDateString()}</span></div>
-           {/*  <div className="articleLikes">
-              {user && <LikeArticle id={id} likes={post.likes} />}
-              <div className="pe-2">
-                <p>{post.likes.length}</p>
-              </div> 
-            </div> */}
+            
             </div>
+            <div className="articleLikes">
+              {user && <LikeArticle id={post.id} likes={post.likes} />}
+             <div >
+                <p>{post.likes?.length} likes</p>
+              </div> 
+            </div> 
             </div>
 
            

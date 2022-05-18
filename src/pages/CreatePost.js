@@ -15,6 +15,7 @@ function CreatePost({ isAuth }) {
     description: "",
     image: "",
     createdAt: Timestamp.now().toDate(),
+   
   });
   let navigate = useNavigate();
   useEffect(() => {
@@ -74,6 +75,8 @@ function CreatePost({ isAuth }) {
               id: auth.currentUser.uid,
             },
             createdAt: Timestamp.now().toDate(),
+            likes:[],
+            comments:[],
           })
             .then(() => {
                toast("Article added successfully", { type: "success" });

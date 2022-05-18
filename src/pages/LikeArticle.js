@@ -5,8 +5,8 @@ import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 const LikeArticle=({ id, likes })=>{
   const [user] = useAuthState(auth);
-
-  const likesRef = doc(db, "Articles", id);
+  const likesRef = doc(db, "posts", id);
+  console.log("likesRef",likesRef)
 
   const handleLike = () => {
     if (likes?.includes(user.uid)) {
