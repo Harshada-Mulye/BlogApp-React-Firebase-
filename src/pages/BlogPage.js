@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 import {
   getDocs,
   collection,
@@ -11,10 +12,12 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 import Comments from "./Comments"
+import LikeArticle from "./LikeArticle";
 
 function BlogPage() {
   const postsCollectionRef = collection(db, "posts");
   const [postLists, setPostList] = useState([]);
+  const [user] = useAuthState(auth);
   let data1;
   const { id } = useParams();
 
@@ -67,6 +70,12 @@ function BlogPage() {
               <div className="postText">
                 <span>{post.postText}</span>
                 </div>
+                <div className="d-flex flex-row-reverse">
+              {user && <LikeArticle id={post.id} likes={post.likes} />}
+              <div className="pe-2">
+                <p>{post.likes.length}</p>
+              </div>
+            </div>
                <div> <Comments id={post.id} /></div> 
               </div>
               </div>
