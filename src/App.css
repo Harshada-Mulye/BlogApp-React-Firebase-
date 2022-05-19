@@ -336,6 +336,8 @@ a:link{
 .articleLikes{
   display: flex;
   flex-direction: row;
+  margin-right: 20px;
+  
 }
 
 /* home page styles */

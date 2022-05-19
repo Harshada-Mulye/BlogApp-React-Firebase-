@@ -12,9 +12,7 @@ import { Link } from "react-router-dom";
 import { auth, db } from "../firebase-config";
   import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";  
-
 import { RiDeleteBin5Line } from "react-icons/ri";
-
 import LikeArticle from "./LikeArticle";
 
 function Blog({ isAuth }) {
@@ -110,7 +108,15 @@ function Blog({ isAuth }) {
              <div >
                 <p>{post.likes?.length} likes</p>
               </div> 
+             
             </div> 
+            <div> 
+              {post.comments && post.comments.length > 0 && (
+                      <div >
+                        <p>{post.comments?.length} comments</p>
+                      </div>
+                    )}
+                    </div>
             </div>
 
            

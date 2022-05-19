@@ -10,6 +10,7 @@ import {
   query,
 } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
+import Comments from "./Comments"
 
 function BlogPage() {
   const postsCollectionRef = collection(db, "posts");
@@ -66,6 +67,7 @@ function BlogPage() {
               <div className="postText">
                 <span>{post.postText}</span>
                 </div>
+               <div> <Comments id={post.id} /></div> 
               </div>
               </div>
             );
