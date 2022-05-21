@@ -15,14 +15,14 @@ body {
   align-items: flex-end;
   padding-bottom: 35px;
   width: 20%;
-  transition: all .2s ease-in-out; 
+  transition: all 0.2s ease-in-out;
 }
 .socialIcons > span {
   padding-left: 25px;
-  cursor:pointer;
+  cursor: pointer;
   font-size: 20px;
 }
-.socialIcons :hover{
+.socialIcons :hover {
   transform: scale(1.1);
 }
 
@@ -46,48 +46,40 @@ nav {
   font-size: 35px;
 }
 
-
-.link{
-  display:flex;
+.link {
+  display: flex;
   justify-content: center;
-  transition: all .2s ease-in-out; 
+  transition: all 0.2s ease-in-out;
 }
- .link :hover{
+.link :hover {
   transform: scale(1.1);
-} 
+}
 
-.welcome{
-  
-  display:flex;
+.welcome {
+  display: flex;
   align-items: center;
   margin-right: 60px;
-  
 }
 
-.logout{
-  
+.logout {
   display: flex;
   font-size: 18px;
   align-items: center;
   margin-left: 30px;
 }
-.logout button{
+.logout button {
   background-color: #0f073d;
-  
-  cursor: pointer;
-            color: #ffffff;
-            border-radius: 40px;
-            padding:10px;
-            
-}
- 
 
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 40px;
+  padding: 10px;
+}
 
 a {
   color: rgb(116, 5, 5);
   text-decoration: none;
   margin: 10px;
-  
 }
 
 .createPostPage {
@@ -205,15 +197,14 @@ textarea {
   justify-content: center;
   padding-top: 20px;
   flex-wrap: wrap;
-  
 }
 
 .homePage .post {
   /* flex-basis: 33.333%; */
-  display:flex;
+  display: flex;
   flex-direction: row;
-  height:250px;
-  width:600px;
+  height: 250px;
+  width: 600px;
   background-color: rgb(250, 250, 250);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin: 20px;
@@ -226,24 +217,22 @@ textarea {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width:100%;
-  height:50px;
-  padding:10px;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
 }
 
 .postHeader .title {
   flex: 50%;
   font-size: 24px;
-  
+
   padding: 0;
 }
 .postHeader .deletePost {
   flex: 50%;
   text-align: end;
 
-  
   flex-direction: column;
- 
 }
 
 .deletePost button {
@@ -255,97 +244,88 @@ textarea {
 }
 
 .post .postTextContainer {
- 
   margin: 20px 0px 0px 0px;
- 
-  word-wrap: break-word; 
+
+  word-wrap: break-word;
   height: auto;
-   max-height: 400px; 
+  max-height: 400px;
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
 }
-a:link{
+a:link {
   text-decoration: none;
 }
-.title a:visited{
-  color: pink;
+.title a:visited {
+  color: none;
 }
-.cardBottomContainer{
-  display:flex;
+.cardBottomContainer {
+  display: flex;
   font-family: "Nanum Brush Script", cursive;
   font-size: 18px;
   margin-top: 5px;
-  padding:10px;
+  padding: 10px;
   flex-direction: row;
   align-items: center;
 }
-.authorPic{
+.authorPic {
   background-color: #e25e2c;
-  font-size:16px;
-  width:60px;
-  height:60px;
+  font-size: 16px;
+  width: 60px;
+  height: 60px;
   border-radius: 500px;
- 
 }
-.authorNameAndDate{
-  flex:1;
+.authorNameAndDate {
+  flex: 1;
   margin: 10px;
 }
 /* b;ogpage styles*/
-.blogPageWrapper{
-  display:flex;
+.blogPageWrapper {
+  display: flex;
   padding: 30px;
   justify-content: center;
   overflow: scroll;
-
-
 }
-.blogPage{
+.blogPage {
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
-.autorPicAndName{
+.autorPicAndName {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.autorPicAndName .authorName{
-  flex:1;
+.autorPicAndName .authorName {
+  flex: 1;
   margin: 20px;
 }
 
-.postTitle{
+.postTitle {
   margin-top: 20px;
-  display:flex;
+  display: flex;
   font-family: "Nanum Brush Script", cursive;
   font-size: 36px;
 }
-.postImage{
+.postImage {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 30px;
 }
 
-.postText{
-  display:flex;
+.postText {
+  display: flex;
   margin-top: 30px;
 }
-.articleLikes{
+.articleLikes {
   display: flex;
   flex-direction: row;
   margin-right: 20px;
-  
 }
 
 /* home page styles */
 .w-100 {
-  width:70%!important;
+  width: 70% !important;
   height: 65vh;
 }
-
-
-
-

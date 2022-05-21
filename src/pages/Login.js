@@ -11,6 +11,7 @@ function Login({ setIsAuth }) {
       console.log(result);
       localStorage.setItem("isAuth", true);
       localStorage.setItem("User", result.user.displayName);
+      localStorage.setItem("UserPhoto", result.user.photoURL);
       setIsAuth(true);
       navigate("/");
     });

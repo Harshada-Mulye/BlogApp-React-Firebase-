@@ -1,4 +1,10 @@
-import { arrayRemove, arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -33,25 +39,24 @@ export default function Comment({ id }) {
     }
   };
 
-  // delete comment function
   const handleDeleteComment = (comment) => {
     console.log(comment);
     updateDoc(commentRef, {
-        comments:arrayRemove(comment),
+      comments: arrayRemove(comment),
     })
-    .then((e) => {
+      .then((e) => {
         console.log(e);
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
-    })
+      });
   };
   return (
     <div>
       Comment
       <div className="container">
         {comments !== null &&
-          comments.map(({ commentId, user, comment, userName , createdAt}) => (
+          comments.map(({ commentId, user, comment, userName, createdAt }) => (
             <div key={commentId}>
               <div className="border p-2 mt-2 row">
                 <div className="col-11">
@@ -71,7 +76,15 @@ export default function Comment({ id }) {
                     <i
                       className="fa fa-times"
                       style={{ cursor: "pointer" }}
-                      onClick={() => handleDeleteComment({ commentId, user, comment, userName , createdAt})}
+                      onClick={() =>
+                        handleDeleteComment({
+                          commentId,
+                          user,
+                          comment,
+                          userName,
+                          createdAt,
+                        })
+                      }
                     ></i>
                   )}
                 </div>

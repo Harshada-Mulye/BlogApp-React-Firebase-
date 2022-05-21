@@ -1,8 +1,7 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
-import { auth, db } from "./firebase-config";
+import { auth } from "./firebase-config";
 import Blog from "./pages/Blog";
 import BlogPage from "./pages/BlogPage";
 import Home from "./pages/Home";
@@ -13,11 +12,8 @@ import logo from "./assets/images/logo.PNG";
 import { FaFacebookF, FaPinterestP } from "react-icons/fa";
 import { AiOutlineTwitter, AiOutlineInstagram } from "react-icons/ai";
 function App() {
-  const [postLists, setPostList] = useState([]);
-  const postsCollectionRef = collection(db, "posts");
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
   const [user, setUser] = useState(localStorage.getItem("User"));
-  //const [loginName, setLoginName] = useState(localStorage.getItem("isAuth"));
 
   const signUserOut = () => {
     signOut(auth).then(() => {
@@ -26,15 +22,7 @@ function App() {
       window.location.pathname = "/login";
     });
   };
-  /*   useEffect(() => {
-    const getPosts = async () => {
-      const data = await getDocs(postsCollectionRef);
-      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log(postLists);
-    };
 
-    getPosts();
-  }, []); */
   return (
     <Router>
       <div className="headerWrapper">
@@ -48,7 +36,6 @@ function App() {
           <span>
             <FaPinterestP />
           </span>
-
           <span>
             <AiOutlineInstagram />
           </span>
@@ -70,7 +57,6 @@ function App() {
           ) : (
             <>
               <Link to="/createpost"> Create Post </Link>
-
               <div className="logout">
                 <button onClick={signUserOut}> Log Out</button>
               </div>
