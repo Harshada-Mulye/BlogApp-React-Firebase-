@@ -16,7 +16,9 @@ import LikeArticle from "./LikeArticle";
 function Blog({ isAuth }) {
   const [postLists, setPostList] = useState([]);
   const [user] = useAuthState(auth);
-  console.log("user name", user);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+
   let part;
   const deletePost = async (id) => {
     const postDoc = doc(db, "posts", id);
@@ -34,10 +36,30 @@ function Blog({ isAuth }) {
       console.log(articles);
     });
   }, []);
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue)
+    if (searchInput !== '') {
+      const filteredData = postLists.filter((item) => {
+        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+      })
+      setFilteredResults(filteredData)
+    }
+    else {
+      setFilteredResults(postLists)
+    }
+  }
 
   return (
+   <div className="blogWrapper">
+     <div  className="center">
+    <button><span className="fa fa-search "></span></button>
+    <input type="text"  placeholder="Search"
+     onChange={(e) => searchItems(e.target.value)}/>
+  </div>   
+  
     <div className="homePage">
-      {postLists.map((post, likes) => {
+   
+      {filteredResults.map((post) => {
         return (
           <div className="post" key={post.id}>
             <div className="image">
@@ -100,6 +122,7 @@ function Blog({ isAuth }) {
           </div>
         );
       })}
+    </div>
     </div>
   );
 }
