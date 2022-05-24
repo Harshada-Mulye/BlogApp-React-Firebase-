@@ -17,7 +17,7 @@ function Blog({ isAuth }) {
   const [postLists, setPostList] = useState([]);
   const [user] = useAuthState(auth);
   const [filteredResults, setFilteredResults] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
   let part;
   const deletePost = async (id) => {
@@ -34,95 +34,102 @@ function Blog({ isAuth }) {
       }));
       setPostList(articles);
       console.log(articles);
+      setFilteredResults(articles);
     });
   }, []);
   const searchItems = (searchValue) => {
-    setSearchInput(searchValue)
-    if (searchInput !== '') {
+    setSearchInput(searchValue);
+    if (searchInput !== "") {
       const filteredData = postLists.filter((item) => {
-        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-      })
-      setFilteredResults(filteredData)
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+    } else {
+      setFilteredResults(postLists);
     }
-    else {
-      setFilteredResults(postLists)
-    }
-  }
+  };
 
   return (
-   <div className="blogWrapper">
-     <div  className="center">
-    <button><span className="fa fa-search "></span></button>
-    <input type="text"  placeholder="Search"
-     onChange={(e) => searchItems(e.target.value)}/>
-  </div>   
-  
-    <div className="homePage">
-   
-      {filteredResults.map((post) => {
-        return (
-          <div className="post" key={post.id}>
-            <div className="image">
-              <img
-                src={post.imageUrl}
-                alt="title"
-                style={{ height: 250, width: 200, marginRight: 10 }}
-              />
-            </div>
-            <div style={{ marginLeft: 10 }}>
-              <div className="postHeader ">
-                <div className="title">
-                  <Link to={`/blog/${post.id}`}>
-                    <span key={post.id}> {post.title}</span>
-                  </Link>
-                </div>
-                <div className="deletePost">
-                  {isAuth && post.author.id === auth.currentUser.uid && (
-                    <>
-                      <RiDeleteBin5Line
-                        style={{ fontSize: "20px", color: "#660000" }}
-                        onClick={() => {
-                          deletePost(post.id);
-                        }}
-                      />
-                    </>
-                  )}
-                </div>
+    <div className="blogWrapper">
+      <div className="search">
+        <button>
+          <span className="fa fa-search "></span>
+        </button>
+        <input
+          type="text"
+          placeholder="Search"
+          onChange={(e) => searchItems(e.target.value)}
+        />
+      </div>
+
+      <div className="homePage">
+        {filteredResults.map((post) => {
+          return (
+            <div className="post" key={post.id}>
+              <div className="image">
+                <img
+                  src={post.imageUrl}
+                  alt="title"
+                  style={{ height: 250, width: 200, marginRight: 10 }}
+                />
               </div>
-              <div className="postTextContainer">
-                <span> {(part = post.postText.slice(0, 120))}...</span>
-              </div>
-              <div className="cardBottomContainer">
-                <div>
-                  <img className="authorPic" src={post.userPhoto}></img>
-                </div>
-                <div className="authorNameAndDate">
-                  <div className="authorName">
-                    <span>{post.author.name}</span>
+              <div style={{ marginLeft: 10 }}>
+                <div className="postHeader ">
+                  <div className="title">
+                    <Link to={`/blog/${post.id}`}>
+                      <span key={post.id}> {post.title}</span>
+                    </Link>
                   </div>
-                  <div className="createdDate">
-                    <span>{post.createdAt.toDate().toDateString()}</span>
+                  <div className="deletePost">
+                    {isAuth && post.author.id === auth.currentUser.uid && (
+                      <>
+                        <RiDeleteBin5Line
+                          style={{ fontSize: "20px", color: "#660000" }}
+                          onClick={() => {
+                            deletePost(post.id);
+                          }}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
-                <div className="articleLikes">
-                  {user && <LikeArticle id={post.id} likes={post.likes} />}
+                <div className="postTextContainer">
+                  <span> {(part = post.postText.slice(0, 120))}...</span>
+                </div>
+                <div className="cardBottomContainer">
                   <div>
-                    <p>{post.likes?.length} likes</p>
+                    <img className="authorPic" src={post.userPhoto}></img>
                   </div>
-                </div>
-                <div>
-                  {post.comments && post.comments.length > 0 && (
-                    <div>
-                      <p>{post.comments?.length} comments</p>
+                  <div className="authorNameAndDate">
+                    <div className="authorName">
+                      <span>{post.author.name}</span>
                     </div>
-                  )}
+                    <div className="createdDate">
+                      <span>{post.createdAt.toDate().toDateString()}</span>
+                    </div>
+                  </div>
+                  <div className="articleLikes">
+                    {user && <LikeArticle id={post.id} likes={post.likes} />}
+                    <div>
+                      <p>{post.likes?.length} likes</p>
+                    </div>
+                  </div>
+                  <div>
+                    {post.comments && post.comments.length > 0 && (
+                      <div>
+                        <p>{post.comments?.length} comments</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
