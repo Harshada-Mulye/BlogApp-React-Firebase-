@@ -28,6 +28,7 @@ function BlogPage() {
     <div>
       {
         (data1 = postLists
+          //filter the posts
           .filter((item) => item.id == id)
 
           .map((post) => {
